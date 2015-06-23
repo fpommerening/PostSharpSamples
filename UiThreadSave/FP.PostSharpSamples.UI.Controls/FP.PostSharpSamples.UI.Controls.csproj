@@ -4,8 +4,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6DB9DAFE-56B5-4064-B60F-142B3B484DFE}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{1884C543-D0D0-4AAC-AFDC-A5BAC892C697}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FP.PostSharpSamples.UI.Controls</RootNamespace>
     <AssemblyName>FP.PostSharpSamples.UI.Controls</AssemblyName>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PostSharp, Version=4.1.15.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <HintPath>..\packages\PostSharp.4.1.15\lib\net35-client\PostSharp.dll</HintPath>
@@ -50,32 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DocumentControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DocumentControl.Designer.cs">
-      <DependentUpon>DocumentControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IncludeAdditionalControlAspect.cs" />
-    <Compile Include="IncludeAdditionalControlAspectPS4.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="DispatchToUiThreadAspect.cs" />
+    <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserForm.Designer.cs" />
-    <EmbeddedResource Include="DocumentControl.resx">
-      <DependentUpon>DocumentControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -84,8 +69,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserForm.resx" />
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -101,9 +89,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FP.PostSharpSamples.BL\FP.PostSharpSamples.BL.csproj">
-      <Project>{33fd6094-ebf8-4645-9ca3-5f6fad689b67}</Project>
-      <Name>FP.PostSharpSamples.BL</Name>
+    <ProjectReference Include="..\FP.PostSharpSamples.UI.Business\FP.PostSharpSamples.UI.Business.csproj">
+      <Project>{a8f0fce4-6320-4f38-963d-3f67ee577456}</Project>
+      <Name>FP.PostSharpSamples.UI.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
